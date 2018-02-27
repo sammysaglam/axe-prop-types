@@ -1,4 +1,4 @@
-var PropTypes = AXE_DEV ? require('../../../../../../docs/node_modules/prop-types') : require('../prop-types');
+var PropTypes = require('../prop-types');
 
 var AxePropTypes = {};
 
