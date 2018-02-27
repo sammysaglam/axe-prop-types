@@ -1,58 +1,49 @@
 # axe-prop-types
 Same as React PropTypes, but allows you to read/extract inputted values during runtime (useful for automating component documentation).
-No need to modify any existing code: just follow steps 1 & 2 of installation, and extract!
-
-> Requirements:
-> - Webpack
+No need to modify any existing code: just follow steps 1 & 2 of installation, and extract using `Component.propTypes`
 
 ## Example
 Extracting the prop-types of "BrowserRouter" component (from the famous React Router) will output the following object:
 ```javascript
 {
-    basename: {
-        isRequired: false,
-        propTypeName: "string"
-    },
-    forceRefresh: {
-        isRequired: false,
-        propTypeName: "bool"
-    },
-    getUserConfirmation: {
-        isRequired: false,
-        propTypeName: "func"
-    },
-    getUserConfirmation: {
-        isRequired: false,
-        propTypeName: "func"
-    },
-    keyLength: {
-        isRequired: false,
-        propTypeName: "number"
-    },
-    children: {
-        isRequired: false
-        propTypeName: "node"
-    }
+    key: "basename",
+    propTypeName: "string",
+    isRequired: false
+},
+{
+    key: "forceRefresh",
+    propTypeName: "bool",
+    isRequired: false
+},
+{
+    key: "getUserConfirmation",
+    propTypeName: "func",
+    isRequired: false
+},
+{
+    key: "keyLength",
+    propTypeName: "number",
+    isRequired: false
+},
+{
+    key: "children",
+    propTypeName: "node",
+    isRequired: false
 }
 ```
 
-To achieve the above, try the following code:
+To achieve the above, follow installation step 1 & 2 below, and try the following code:
 ```javascript
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-const forEachPropType = (propTypesObject, callback) => Object.keys(propTypesObject).forEach(key => callback({
+const logPropTypes = ({propTypes}) => Object.keys(propTypes).forEach(key => console.log({
     key,
-    propType: propTypesObject[key]
+    ...propTypes[key].info
 }));
 
-// log the extracted propType data
-forEachPropType(BrowserRouter.propTypes, ({ key, propType }) => {
-    console.log(
-        key,
-        propType.info
-    );
-});
+// log the propType data
+logPropTypes(BrowserRouter);
 ```
 
 ### Another example:
@@ -70,18 +61,13 @@ YourComponent.propTypes = {
     })
 };
 
-const forEachPropType = (propTypesObject, callback) => Object.keys(propTypesObject).forEach(key => callback({
+const logPropTypes = ({propTypes}) => Object.keys(propTypes).forEach(key => console.log({
     key,
-    propType: propTypesObject[key]
+    ...propTypes[key].info
 }));
 
-// log the extracted propType data
-forEachPropType(YourComponent.propTypes, ({ key, propType }) => {
-    console.log(
-        key,
-        propType.info
-    );
-});
+// log the propType data
+logPropTypes(YourComponent);
 ```
 
 ## Installation
@@ -114,7 +100,7 @@ const path = require('path');
 module.exports = {
     entry: './src/entry',
     output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.join(__dirname, 'build'),
         filename: 'app.js'
     },
     module: {
