@@ -1,6 +1,6 @@
 {
 	"name": "axe-prop-types",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Same as React PropTypes, but allows you to read/extract inputted values during runtime (useful for automating component documentation).",
 	"main": "index.js",
 	"homepage": "https://github.com/sammysaglam/axe-prop-types",
