@@ -1,4 +1,8 @@
 # axe-prop-types
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sammysaglam/axe-prop-types/blob/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/axe-prop-types.svg?style=flat)](https://www.npmjs.com/package/axe-prop-types)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+
 Same as React PropTypes, but allows you to read/extract inputted values during runtime (useful for automating component documentation).
 No need to modify any existing code: just follow steps 1 & 2 of installation, and extract using `Component.propTypes`
 
