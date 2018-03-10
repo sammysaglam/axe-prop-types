@@ -6,6 +6,25 @@
 Same as React PropTypes, but allows you to read/extract inputted values during runtime (useful for automating component documentation).
 No need to modify any existing code: just follow steps 1 & 2 of installation, and extract using `Component.propTypes`
 
+```javascript
+console.log(AnyComponent.propTypes.info);
+
+// will output (for example):
+{
+    key: "color",
+    propTypeName: "oneOf",
+    isRequired: false,
+    allowedValues:[
+		"beige",
+		"red",
+		"green",
+		"black",
+		"white",
+		"purple"
+    ]
+}
+```
+
 ## Example
 Extracting the prop-types of "BrowserRouter" component (from the famous React Router) will output the following object:
 ```javascript
