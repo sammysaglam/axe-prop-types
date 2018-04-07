@@ -7,11 +7,10 @@ Same as React PropTypes, but allows you to read/extract inputted values during r
 No need to modify any existing code: just follow steps 1 & 2 of installation, and extract using `Component.propTypes`
 
 ```javascript
-console.log(AnyComponent.propTypes.info);
+console.log(AnyComponent.propTypes.color.info);
 
 // will output (for example):
 {
-    key: "color",
     propTypeName: "oneOf",
     isRequired: false,
     allowedValues:[
