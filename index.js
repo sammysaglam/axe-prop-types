@@ -49,7 +49,7 @@ Object.keys(PropTypes).forEach(function(propTypeName) {
 // override "instanceOf"
 AxePropTypes.instanceOf = function(jsClass) {
 	return enhancePropType(PropTypes.instanceOf(jsClass), {
-		className: jsClass.name,
+		className: jsClass && jsClass.name,
 		propTypeName: 'instanceOf'
 	});
 };
