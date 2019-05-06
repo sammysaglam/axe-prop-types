@@ -6,7 +6,7 @@ var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
 	Symbol.for('react.element')) ||
 	0xeac7;
 
-var isValidElement = function(object) {
+var isValidElement = function (object) {
 	return typeof object === 'object' &&
 		object !== null &&
 		object.$$typeof === REACT_ELEMENT_TYPE;
@@ -20,7 +20,7 @@ var PropTypes = require('../prop-types/factoryWithTypeCheckers')(isValidElement,
 var AxePropTypes = {};
 
 // function to add key value pair to proptype
-var enhancePropType = function(propType, values) {
+var enhancePropType = function (propType, values) {
 
 	propType.info = Object.assign(
 		propType.info ? propType.info : {},
@@ -41,13 +41,13 @@ var enhancePropType = function(propType, values) {
 };
 
 // copy original PropTypes to AxePropTypes
-Object.keys(PropTypes).forEach(function(propTypeName) {
+Object.keys(PropTypes).forEach(function (propTypeName) {
 	if (propTypeName === 'PropTypes') return false;
-	AxePropTypes[propTypeName] = enhancePropType(PropTypes[propTypeName], { propTypeName });
+	AxePropTypes[propTypeName] = enhancePropType(PropTypes[propTypeName], { propTypeName: propTypeName });
 });
 
 // override "instanceOf"
-AxePropTypes.instanceOf = function(jsClass) {
+AxePropTypes.instanceOf = function (jsClass) {
 	return enhancePropType(PropTypes.instanceOf(jsClass), {
 		className: jsClass && jsClass.name,
 		propTypeName: 'instanceOf'
@@ -55,41 +55,41 @@ AxePropTypes.instanceOf = function(jsClass) {
 };
 
 // override "oneOf"
-AxePropTypes.oneOf = function(allowedValues) {
+AxePropTypes.oneOf = function (allowedValues) {
 	return enhancePropType(PropTypes.oneOf(allowedValues), {
-		allowedValues,
+		allowedValues: allowedValues,
 		propTypeName: 'oneOf'
 	});
 };
 
 // override "oneOfType"
-AxePropTypes.oneOfType = function(allowedPropTypes) {
+AxePropTypes.oneOfType = function (allowedPropTypes) {
 	return enhancePropType(PropTypes.oneOfType(allowedPropTypes), {
-		allowedPropTypes,
+		allowedPropTypes: allowedPropTypes,
 		propTypeName: 'oneOfType'
 	});
 };
 
 // override "arrayOf"
-AxePropTypes.arrayOf = function(allowedChildrenPropType) {
+AxePropTypes.arrayOf = function (allowedChildrenPropType) {
 	return enhancePropType(PropTypes.arrayOf(allowedChildrenPropType), {
-		allowedChildrenPropType,
+		allowedChildrenPropType: allowedChildrenPropType,
 		propTypeName: 'arrayOf'
 	});
 };
 
 // override "objectOf"
-AxePropTypes.objectOf = function(allowedChildrenPropType) {
+AxePropTypes.objectOf = function (allowedChildrenPropType) {
 	return enhancePropType(PropTypes.objectOf(allowedChildrenPropType), {
-		allowedChildrenPropType,
+		allowedChildrenPropType: allowedChildrenPropType,
 		propTypeName: 'objectOf'
 	});
 };
 
 // override "shape"
-AxePropTypes.shape = function(objectShape) {
+AxePropTypes.shape = function (objectShape) {
 	return enhancePropType(PropTypes.shape(objectShape), {
-		objectShape,
+		objectShape: objectShape,
 		propTypeName: 'shape'
 	});
 };
